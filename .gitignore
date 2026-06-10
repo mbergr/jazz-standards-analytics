@@ -1,0 +1,28 @@
+# Credentials — never commit
+.env
+
+# Data
+data/*.duckdb
+data/*.duckdb.wal
+*.csv
+*.parquet
+
+# Python
+__pycache__/
+*.py[cod]
+.venv/
+venv/
+
+# dbt
+dbt_project/target/
+dbt_project/dbt_packages/
+dbt_project/logs/
+logs/
+
+# Streamlit
+.streamlit/secrets.toml
+
+# OS / editor
+.DS_Store
+.vscode/
+.idea/

@@ -1,0 +1,14 @@
+# Ingestion
+requests
+beautifulsoup4
+spotipy
+python-dotenv
+
+# Storage & transformation
+duckdb
+dbt-duckdb
+
+# Dashboard
+streamlit
+plotly
+pandas
