@@ -58,13 +58,15 @@ jazz-standards-analytics/
 
 ## Roadmap
 
-- [x] Project scope, architecture and data model design
-- [ ] **Week 1–2:** Ingestion pipeline (scraping + Spotify API → DuckDB raw)
-- [ ] **Week 3:** dbt staging layer + source freshness + basic tests
-- [ ] **Week 4:** Intermediate models + star schema marts + relationship tests
-- [ ] **Week 5:** dbt docs, metrics (most-recorded standards, longevity score)
-- [ ] **Week 6:** Streamlit dashboard, deployed on Streamlit Community Cloud
-- [ ] **Week 7–8:** Polish, screenshots, write-up on my [blog](https://mbergr.github.io/portfolio/blog/)
+Progress is tracked here as steps are completed — dates mark actual completion.
+
+- [x] **01 · Design** — project scope, architecture and dimensional model · *done 2026-06-10*
+- [ ] **02 · Ingestion** — scraping + Spotify API → DuckDB raw schema
+- [ ] **03 · Staging** — dbt staging layer, source definitions, basic tests
+- [ ] **04 · Marts** — intermediate models + star schema with relationship tests
+- [ ] **05 · Docs & metrics** — dbt docs, lineage, most-recorded standards, longevity score
+- [ ] **06 · Dashboard** — Streamlit app deployed on Streamlit Community Cloud
+- [ ] **07 · Write-up** — screenshots, polish, blog post
 
 ## Questions this project answers
 
@@ -74,7 +76,7 @@ jazz-standards-analytics/
 
 ## Running locally
 
-> ⚙️ Setup instructions will land here once the ingestion pipeline is merged (Week 2). The short version: `pip install -r requirements.txt`, add Spotify API credentials to `.env`, run the ingestion scripts, then `dbt build` inside `dbt_project/`.
+> ⚙️ Setup instructions will land here once the ingestion pipeline is merged (step 02). The short version: `pip install -r requirements.txt`, add Spotify API credentials to `.env`, run the ingestion scripts, then `dbt build` inside `dbt_project/`.
 
 ## About
 
