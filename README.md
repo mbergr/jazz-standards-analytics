@@ -61,7 +61,8 @@ jazz-standards-analytics/
 Progress is tracked here as steps are completed — dates mark actual completion.
 
 - [x] **01 · Design** — project scope, architecture and dimensional model · *done 2026-06-10*
-- [ ] **02 · Ingestion** — scraping + Spotify API → DuckDB raw schema
+- [x] **02.1 · Ingestion — standards** — scrape the JazzStandards.com canon → `raw.standards` · *done 2026-06-24*
+- [ ] **02.2 · Ingestion — recordings** — Spotify Web API search → `raw.recordings`
 - [ ] **03 · Staging** — dbt staging layer, source definitions, basic tests
 - [ ] **04 · Marts** — intermediate models + star schema with relationship tests
 - [ ] **05 · Docs & metrics** — dbt docs, lineage, most-recorded standards, longevity score
