@@ -47,6 +47,6 @@ Tip: run a quick smoke test before a full crawl with `TOP_N=3 python -m ingestio
 ## Raw schema
 
 - **`raw.standards`** — `rank, title, slug, composer, lyricist, year, original_source, detail_url, scraped_at`
-- **`raw.recordings`** — `standard_slug, spotify_track_id, track_name, artist_name, artist_id, album_name, album_release_date, popularity, duration_ms, ingested_at`
+- **`raw.recordings`** — `standard_slug, spotify_track_id, track_name, artist_name, artist_id, album_name, album_release_date, duration_ms, ingested_at`
 
 Both tables are full-refreshed on every run.

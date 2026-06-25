@@ -32,7 +32,6 @@ DDL = [
         artist_id           VARCHAR,
         album_name          VARCHAR,
         album_release_date  VARCHAR,
-        popularity          INTEGER,
         duration_ms         INTEGER,
         ingested_at         TIMESTAMP
     );

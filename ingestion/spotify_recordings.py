@@ -32,7 +32,13 @@ def client():
 
 
 def search_recordings(sp, slug, title, limit):
-    """Search Spotify for a standard's title and return raw.recordings rows."""
+    """Search Spotify for a standard's title and return raw.recordings rows.
+
+    Note: the search returns *candidate* recordings — any track whose name matches
+    the title, including unrelated modern songs that happen to share it. Matching
+    candidates to the actual jazz standard (entity resolution) is deferred to the
+    dbt intermediate layer, per the project's decision log.
+    """
     results = sp.search(q=f'track:"{title}"', type="track", limit=limit)
     items = results.get("tracks", {}).get("items", [])
     rows = []
@@ -47,7 +53,6 @@ def search_recordings(sp, slug, title, limit):
             artist.get("id"),
             album.get("name"),
             album.get("release_date"),
-            t.get("popularity"),
             t.get("duration_ms"),
             datetime.utcnow(),
         ))
@@ -78,7 +83,7 @@ def load(con, rows):
     con.execute(f"DELETE FROM {config.RAW_SCHEMA}.recordings;")
     if rows:
         con.executemany(
-            f"INSERT INTO {config.RAW_SCHEMA}.recordings VALUES (?,?,?,?,?,?,?,?,?,?)", rows
+            f"INSERT INTO {config.RAW_SCHEMA}.recordings VALUES (?,?,?,?,?,?,?,?,?)", rows
         )
 
 
