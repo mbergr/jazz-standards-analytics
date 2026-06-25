@@ -73,13 +73,31 @@ def _origin_cells(soup):
     The site nests tables heavily, so several tables contain the 'Music'/'Rank'
     labels (the outer wrappers include the whole article). We want the innermost,
     compact one — i.e. the matching table with the fewest cells.
+
+    Some standards (one writer for both words and music) use a combined
+    'Words and Music' label instead of separate 'Music' / 'Lyrics' cells.
     """
     candidates = []
     for tbl in soup.find_all("table"):
         cells = [c.get_text(" ", strip=True) for c in tbl.find_all(["td", "th"])]
-        if "Music" in cells and "Rank" in cells:
+        if "Rank" in cells and ("Music" in cells or "Words and Music" in cells):
             candidates.append(cells)
     return min(candidates, key=len) if candidates else None
+
+
+def _names_after(cells, label):
+    """Join the short, non-empty value cells that follow a label, or None.
+
+    A long cell (> 80 chars) signals prose rather than a credit, so we stop there.
+    """
+    names = []
+    for c in cells[cells.index(label) + 1:]:
+        if not c:
+            continue
+        if len(c) > 80:
+            break
+        names.append(c)
+    return ", ".join(names) if names else None
 
 
 def parse_detail(html):
@@ -94,20 +112,18 @@ def parse_detail(html):
 
     cells = _origin_cells(soup)
     if cells:
-        i = cells.index("Music")
-        if i + 1 < len(cells) and cells[i + 1] not in ("Lyrics", ""):
-            fields["composer"] = cells[i + 1]
-        if "Lyrics" in cells:
-            j = cells.index("Lyrics")
-            lyricists = []
-            for c in cells[j + 1:]:
-                if not c:
-                    continue
-                if len(c) > 40:  # safety net: real names are short, prose is not
-                    break
-                lyricists.append(c)
-            if lyricists:
-                fields["lyricist"] = ", ".join(lyricists)
+        if "Music" in cells:
+            # Separate 'Music' (composer) and 'Lyrics' (lyricist) credits.
+            i = cells.index("Music")
+            if i + 1 < len(cells) and cells[i + 1] not in ("Lyrics", ""):
+                fields["composer"] = cells[i + 1]
+            if "Lyrics" in cells:
+                fields["lyricist"] = _names_after(cells, "Lyrics")
+        elif "Words and Music" in cells:
+            # One credit covers both — assign it to composer and lyricist alike.
+            both = _names_after(cells, "Words and Music")
+            fields["composer"] = both
+            fields["lyricist"] = both
 
     ym = _YEAR_RE.search(soup.get_text(" ", strip=True))
     if ym:
