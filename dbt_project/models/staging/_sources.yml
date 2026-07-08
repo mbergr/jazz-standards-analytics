@@ -1,0 +1,16 @@
+version: 2
+
+sources:
+  - name: raw
+    description: >
+      Raw data landed by the Python ingestion pipeline. Tables live in the `raw`
+      schema of the DuckDB file and are kept as-is (no cleaning) so the warehouse
+      can always be rebuilt without re-hitting the network.
+    schema: raw
+    tables:
+      - name: standards
+        description: "One row per jazz standard scraped from JazzStandards.com (top 100)."
+      - name: recordings
+        description: >
+          Candidate Spotify recordings per standard. These are search results, not
+          yet resolved to the actual standard — entity resolution happens downstream.

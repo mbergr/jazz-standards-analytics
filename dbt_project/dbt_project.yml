@@ -1,0 +1,21 @@
+name: 'jazz_standards'
+version: '0.1.0'
+config-version: 2
+
+# This profile lives in ./profiles.yml — run dbt with `--profiles-dir .` from here.
+profile: 'jazz_standards'
+
+model-paths: ["models"]
+test-paths: ["tests"]
+macro-paths: ["macros"]
+
+target-path: "target"
+clean-targets:
+  - "target"
+  - "dbt_packages"
+
+# Layer conventions: staging models are lightweight, 1:1 cleaning views over sources.
+models:
+  jazz_standards:
+    staging:
+      +materialized: view

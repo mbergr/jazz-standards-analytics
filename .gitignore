@@ -1,5 +1,7 @@
 # Credentials — never commit
 .env
+# spotipy OAuth token cache
+.cache
 
 # Data
 data/*.duckdb
@@ -17,6 +19,7 @@ venv/
 dbt_project/target/
 dbt_project/dbt_packages/
 dbt_project/logs/
+dbt_project/.user.yml
 logs/
 
 # Streamlit

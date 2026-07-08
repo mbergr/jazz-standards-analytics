@@ -1,0 +1,39 @@
+version: 2
+
+models:
+  - name: stg_standards
+    description: "Cleaned canon of jazz standards, one row per standard."
+    columns:
+      - name: standard_id
+        description: "Natural key: the JazzStandards.com URL slug (e.g. 'bodyandsoul')."
+        data_tests:
+          - not_null
+          - unique
+      - name: title
+        description: "Standard title."
+        data_tests:
+          - not_null
+      - name: popularity_rank
+        description: "Rank on the JazzStandards.com popularity list (1 = most popular)."
+        data_tests:
+          - not_null
+      - name: composed_year
+        description: "Year the standard was composed."
+
+  - name: stg_recordings
+    description: "Cleaned candidate Spotify recordings, one row per (standard, track)."
+    columns:
+      - name: standard_id
+        description: "Foreign key to stg_standards."
+        data_tests:
+          - not_null
+          - relationships:
+              arguments:
+                to: ref('stg_standards')
+                field: standard_id
+      - name: track_id
+        description: "Spotify track id."
+        data_tests:
+          - not_null
+      - name: release_year
+        description: "Release year parsed from the raw release date (nullable)."

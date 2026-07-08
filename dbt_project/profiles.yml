@@ -1,0 +1,9 @@
+# dbt connection profile. Safe to commit: DuckDB is a local file, no secrets here.
+# The path is relative to where dbt is invoked — run dbt from this dbt_project/ dir.
+jazz_standards:
+  target: dev
+  outputs:
+    dev:
+      type: duckdb
+      path: ../data/jazz.duckdb
+      threads: 4
