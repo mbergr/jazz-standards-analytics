@@ -64,7 +64,7 @@ Progress is tracked here as steps are completed — dates mark actual completion
 - [x] **02.1 · Ingestion — standards** — scrape the JazzStandards.com canon → `raw.standards` · *done 2026-06-24*
 - [x] **02.2 · Ingestion — recordings** — Spotify Web API search → `raw.recordings` · *done 2026-06-24*
 - [x] **03 · Staging** — dbt staging layer, source definitions, basic tests · *done 2026-07-08*
-- [ ] **04 · Marts** — intermediate models + star schema with relationship tests
+- [x] **04 · Marts** — intermediate models + star schema with relationship tests · *done 2026-09-20*
 - [ ] **05 · Docs & metrics** — dbt docs, lineage, most-recorded standards, longevity score
 - [ ] **06 · Dashboard** — Streamlit app deployed on Streamlit Community Cloud
 - [ ] **07 · Write-up** — screenshots, polish, blog post
