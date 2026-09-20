@@ -14,8 +14,13 @@ clean-targets:
   - "target"
   - "dbt_packages"
 
-# Layer conventions: staging models are lightweight, 1:1 cleaning views over sources.
+# Layer conventions: staging + intermediate are views (cheap, always fresh);
+# marts are physical tables (the serving layer the dashboard queries).
 models:
   jazz_standards:
     staging:
       +materialized: view
+    intermediate:
+      +materialized: view
+    marts:
+      +materialized: table

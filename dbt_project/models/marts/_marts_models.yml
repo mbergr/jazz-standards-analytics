@@ -1,0 +1,56 @@
+version: 2
+
+models:
+  - name: dim_standards
+    description: "Standard dimension: one row per jazz standard."
+    columns:
+      - name: standard_key
+        description: "Surrogate key."
+        data_tests: [not_null, unique]
+      - name: standard_id
+        description: "Natural key (URL slug)."
+        data_tests: [not_null, unique]
+
+  - name: dim_artists
+    description: "Artist dimension: artists with at least one resolved recording."
+    columns:
+      - name: artist_key
+        description: "Surrogate key."
+        data_tests: [not_null, unique]
+
+  - name: dim_years
+    description: "Time dimension at year grain, with decade and jazz era."
+    columns:
+      - name: year_key
+        description: "The year itself (natural key)."
+        data_tests: [not_null, unique]
+
+  - name: fct_recordings
+    description: "Fact: one recording of a standard by an artist (deduplicated)."
+    columns:
+      - name: recording_key
+        description: "Surrogate key of the recording."
+        data_tests: [not_null, unique]
+      - name: standard_key
+        description: "FK to dim_standards."
+        data_tests:
+          - not_null
+          - relationships:
+              arguments:
+                to: ref('dim_standards')
+                field: standard_key
+      - name: artist_key
+        description: "FK to dim_artists."
+        data_tests:
+          - not_null
+          - relationships:
+              arguments:
+                to: ref('dim_artists')
+                field: artist_key
+      - name: year_key
+        description: "FK to dim_years."
+        data_tests:
+          - relationships:
+              arguments:
+                to: ref('dim_years')
+                field: year_key

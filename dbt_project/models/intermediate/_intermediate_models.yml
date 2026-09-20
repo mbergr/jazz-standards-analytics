@@ -1,0 +1,21 @@
+version: 2
+
+models:
+  - name: int_recordings_resolved
+    description: >
+      Candidate recordings kept only where the normalized track title matches the
+      standard's normalized title. This is the entity-resolution step; it removes
+      same-search false positives but cannot catch a non-jazz track that shares the
+      exact title (documented limitation).
+
+  - name: int_recordings_deduped
+    description: "One recording per (standard, artist) — the earliest release. The fact grain."
+    columns:
+      - name: standard_id
+        description: "FK to the standard."
+        data_tests:
+          - not_null
+      - name: track_id
+        description: "Spotify track id of the chosen recording."
+        data_tests:
+          - not_null
