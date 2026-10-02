@@ -1,0 +1,37 @@
+version: 2
+
+models:
+  - name: rpt_most_recorded_standards
+    description: >
+      One row per standard with its recording and distinct-artist counts, ranked.
+      Capped by the ingestion limit (10 recordings/standard), so it reflects what
+      was fetched, not the true canon count.
+    columns:
+      - name: standard_id
+        description: "Natural key of the standard."
+        data_tests: [not_null, unique]
+      - name: recording_count
+        description: "Number of deduplicated recordings in the dataset."
+        data_tests: [not_null]
+
+  - name: rpt_standard_longevity
+    description: >
+      One row per standard measuring how long it kept being recorded: first/latest
+      recording year, span in years, and number of jazz eras spanned. Based on
+      Spotify release years (release, not recording, dates).
+    columns:
+      - name: standard_id
+        description: "Natural key of the standard."
+        data_tests: [not_null, unique]
+      - name: span_years
+        description: "Latest minus earliest recording year."
+        data_tests: [not_null]
+
+  - name: rpt_composer_footprint
+    description: >
+      One row per composer credit: standards in the canon, total recordings, and the
+      range of composition years. Multi-writer credits are not split.
+    columns:
+      - name: composer
+        description: "Composer credit string (natural key for this report)."
+        data_tests: [not_null, unique]
