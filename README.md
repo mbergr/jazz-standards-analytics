@@ -66,7 +66,7 @@ Progress is tracked here as steps are completed — dates mark actual completion
 - [x] **03 · Staging** — dbt staging layer, source definitions, basic tests · *done 2026-07-08*
 - [x] **04 · Marts** — intermediate models + star schema with relationship tests · *done 2026-09-20*
 - [x] **05 · Docs & metrics** — dbt docs, lineage, most-recorded standards, longevity score · *done 2026-10-02*
-- [ ] **06 · Dashboard** — Streamlit app deployed on Streamlit Community Cloud
+- [x] **06 · Dashboard** — Streamlit app (built + verified locally; deploy to Streamlit Community Cloud pending) · *done 2026-11-24*
 - [ ] **07 · Write-up** — screenshots, polish, blog post
 
 ## Questions this project answers
