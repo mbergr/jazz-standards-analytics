@@ -4,6 +4,8 @@
 
 **Status: 🚧 Work in progress** — actively built in public. See the [roadmap](#roadmap) for current state.
 
+**▶️ Live dashboard: [jazz-standards-analytics.streamlit.app](https://jazz-standards-analytics.streamlit.app/)**
+
 An end-to-end analytics engineering project that ingests, models, and visualizes data about jazz standards: which tunes form the canon, who recorded them, and how the repertoire evolved across eras. Built as a real-world application of the modern data stack — and as a way to connect my two daily disciplines: data and jazz guitar.
 
 ---
@@ -66,7 +68,7 @@ Progress is tracked here as steps are completed — dates mark actual completion
 - [x] **03 · Staging** — dbt staging layer, source definitions, basic tests · *done 2026-07-08*
 - [x] **04 · Marts** — intermediate models + star schema with relationship tests · *done 2026-09-20*
 - [x] **05 · Docs & metrics** — dbt docs, lineage, most-recorded standards, longevity score · *done 2026-10-02*
-- [x] **06 · Dashboard** — Streamlit app (built + verified locally; deploy to Streamlit Community Cloud pending) · *done 2026-11-24*
+- [x] **06 · Dashboard** — Streamlit app [live on Streamlit Community Cloud](https://jazz-standards-analytics.streamlit.app/) · *done 2026-11-24*
 - [ ] **07 · Write-up** — screenshots, polish, blog post
 
 ## Questions this project answers
