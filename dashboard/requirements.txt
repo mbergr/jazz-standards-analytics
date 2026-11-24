@@ -1,0 +1,5 @@
+# Dashboard-only dependencies (kept separate from the pipeline's requirements.txt
+# so Streamlit Community Cloud installs just what the app needs).
+streamlit>=1.40
+plotly>=5.20
+pandas>=2.0

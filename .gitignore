@@ -8,6 +8,8 @@ data/*.duckdb
 data/*.duckdb.wal
 *.csv
 *.parquet
+# ...except the dashboard's committed data source (exported marts)
+!dashboard/data/*.csv
 
 # Python
 __pycache__/
@@ -29,3 +31,4 @@ logs/
 .DS_Store
 .vscode/
 .idea/
+.claude/
